@@ -15,7 +15,7 @@ namespace Tools.Models
         // TODO: Hide quests if they've been completed on the Dashboard?
 
         public List<Skills.SkillData> skills { get; set; }
-        public List<QuestData> quests { get; set; }
+        public List<Quests.QuestData> quests { get; set; }
 
         public static PlayerData Lookup(string username)
         {

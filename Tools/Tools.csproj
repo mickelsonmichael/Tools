@@ -124,6 +124,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestsController.cs" />
     <Compile Include="Controllers\RunescapeController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Controllers\XboxController.cs" />
@@ -131,7 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PlayerData.cs" />
-    <Compile Include="Models\QuestData.cs" />
+    <Compile Include="Models\Quests.cs" />
     <Compile Include="Models\Runescape.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,6 +236,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\sprites\" />
+    <Folder Include="Views\Quests\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
