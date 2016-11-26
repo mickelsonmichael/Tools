@@ -1,0 +1,58 @@
+﻿@model List<Tools.Models.Skills.SkillData>
+@{
+    ViewBag.Title = "Skills";
+}
+
+<h2>RENS0N - Skills</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table id="skills" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Level</th>
+                        <th>Next Level</th>
+                        <th>Quest Req.</th>
+                        <th>Diary Req.</th>
+                        <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Tools.Models.Skills.SkillData skill in Model)
+                    {
+                        <tr>
+                            <td>@skill.name</td>
+                            <td style="text-align:center;">@skill.level</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="@skill.levelprogress"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@skill.levelprogress%">
+                                        <span>@skill.levelprogress%</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="text-align:center;">@skill.questreq</td>
+                            <td style="text-align:center;">@skill.diaryreq</td>
+                            <td style="text-align:center;">@skill.rank</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#skills").DataTable({
+                            "search": false,
+                            "paging": false,
+                            "bFilter": false,
+                            "info": false
+                        });
+        })
+    </script>
+}

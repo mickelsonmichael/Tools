@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Runescape" Class="RunescapeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=35.164.27.172,1433;Initial Catalog=Runescape;User ID=Mike;Network Library=dbmssocn" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="RunescapeConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Players" Member="Players">
+    <Type Name="Player">
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RS_Username" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SkillsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Admin" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="PlayerQuest_Player" Member="PlayerQuest" ThisKey="PlayerID" OtherKey="PlayerID" Type="PlayerQuest" IsForeignKey="true" />
+      <Association Name="PlayerSkill_Player" Member="PlayerSkill" ThisKey="PlayerID" OtherKey="PlayerID" Type="PlayerSkill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayerQuest" Member="PlayerQuests">
+    <Type Name="PlayerQuest">
+      <Column Name="PlayerQuestID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="PlayerQuest_Player" Member="Players" ThisKey="PlayerID" OtherKey="PlayerID" Type="Player" />
+      <Association Name="PlayerQuest_Quest" Member="Quests" ThisKey="QuestID" OtherKey="QuestID" Type="Quest" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayerSkills" Member="PlayerSkills">
+    <Type Name="PlayerSkill">
+      <Column Name="PlayerSkillID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SkillID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rank" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Exp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PlayerSkill_Player" Member="Players" ThisKey="PlayerID" OtherKey="PlayerID" Type="Player" />
+      <Association Name="PlayerSkill_Skill" Member="Skills" ThisKey="SkillID" OtherKey="SkillID" Type="Skill" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Skills" Member="Skills">
+    <Type Name="Skill">
+      <Column Name="SkillID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MinimumQuestRequirement" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MinimumQuestName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MinimumDiaryRequirement" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MinimumDiaryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PlayerSkill_Skill" Member="PlayerSkill" ThisKey="SkillID" OtherKey="SkillID" Type="PlayerSkill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Quests" Member="Quests">
+    <Type Name="Quest">
+      <Column Name="QuestID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Reward" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="PlayerQuest_Quest" Member="PlayerQuest" ThisKey="QuestID" OtherKey="QuestID" Type="PlayerQuest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Levels" Member="Levels">
+    <Type Name="Level">
+      <Column Name="LevelID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Level]" Member="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Experience" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

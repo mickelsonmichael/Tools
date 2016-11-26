@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Xbox One";
+}
+
+<h2>Xbox One Games</h2>
+
+<div id="error" class="alert alert-danger" style="display: none;"></div>
+<div id="success" class="alert alert-success" style="display: none;">
+    <strong>Success!</strong> Data has been sucessfully obtained!
+</div>
+<div id="loading" class="alert alert-info">
+    <strong><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading!</strong>
+    Getting data from XboxApi.com, please wait.
+</div>
+
+<div class="row">
+    <table id="games" class="table table-striped" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+@section scripts{
+    <script>
+        var xuid = "2661278886955474",
+            data = new XMLHttpRequest();
+
+        data.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                // Error
+                if (this.status != 200) {
+                    $("#error").append($("<strong>").text(this.status))
+                        .append(" " + this.statusText)
+                        .show();
+                }
+
+                else {
+                    $("#loading").remove(); // Remove the loading icon
+                    $.each($.parseJSON(this.response).titles, function (key, game) {
+                        var row = $("<tr>"), // Create new row
+                            link = $("<a>").text(game.name).attr("href", "/Xbox/Achievements/" + game.titleId), // Create link to Achievements
+                            name = $("<td>").html(link), // Add link
+                            progress = $("<td>"), // Create the progress cell
+                            progressPercentage = parseInt(game.currentGamerscore) / parseInt(game.maxGamerscore) * 100; // Calculate the percentage
+
+                        if (isNaN(progressPercentage)) {
+                            progressPercentage = 0; // If NaN convert to 0
+                        }
+
+                        // Date Formatting
+                        var date = new Date(game.lastPlayed),
+                            dateFormatted = date.getFullYear() + "." + (date.getMonth()+1) + "." + date.getDate(),
+                            lastPlayed = $("<td>").text(dateFormatted);
+
+                        // Bootstrap Progress Bar
+                        var prog = $("<div>").addClass("progress"),
+                            progressBar = $("<div>").addClass("progress-bar")
+                            .attr("role", "progressbar")
+                            .attr("aria-valuenow", progressPercentage)
+                            .attr("aria-valuemin", 0)
+                            .attr("aria-valuemax", 100)
+                            .text(Math.floor(progressPercentage) + "%")
+                            .css("width", progressPercentage + "%");
+
+                        prog.append(progressBar)
+                        progress.append(prog);
+                        row.append(name).append(progress);
+                        $("#games").append(row);
+                    })
+                    $("#games").DataTable();
+                    $("#success").show().fadeOut(1000);
+                };
+            }
+        }
+        data.open("GET", "https://xboxapi.com/v2/2661278886955474/xboxonegames", true);
+        data.setRequestHeader("X-Auth", "5f57c3880bd24efcaac2e5c0ec667fbe81de8b3b");
+        data.setRequestHeader("Content-Type", "application/json");
+        data.send();
+    </script>
+}

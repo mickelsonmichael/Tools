@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/fonts/icomoon.eot?yoblmk');
+  src:  url('/fonts/icomoon.eot?yoblmk#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?yoblmk') format('truetype'),
+    url('/fonts/icomoon.woff?yoblmk') format('woff'),
+    url('/fonts/icomoon.svg?yoblmk#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icomoon-"], [class*=" icomoon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icomoon-salmon:before {
+  content: "\e900";
+}
+.icomoon-achievement:before {
+  content: "\e901";
+}
+.icomoon-apc:before {
+  content: "\e902";
+}
+.icomoon-atom:before {
+  content: "\e903";
+}
+.icomoon-bowie-knife:before {
+  content: "\e904";
+}
+.icomoon-console-controller:before {
+  content: "\e905";
+}
+.icomoon-crescent-blade:before {
+  content: "\e906";
+}
+.icomoon-famas:before {
+  content: "\e907";
+}
+.icomoon-gladius:before {
+  content: "\e908";
+}
+.icomoon-pestle-mortar:before {
+  content: "\e909";
+}
+.icomoon-retro-controller:before {
+  content: "\e90a";
+}
+.icomoon-key:before {
+  content: "\e90b";
+}
+.icomoon-shield:before {
+  content: "\e90c";
+}
+.icomoon-arrowhead:before {
+  content: "\e90d";
+}
+.icomoon-barefoot:before {
+  content: "\e90e";
+}
+.icomoon-black-flag:before {
+  content: "\e90f";
+}
+.icomoon-bookmark:before {
+  content: "\e910";
+}
+.icomoon-bookmarklet:before {
+  content: "\e911";
+}
+.icomoon-checked-shield:before {
+  content: "\e912";
+}
+.icomoon-domino-mask:before {
+  content: "\e913";
+}
+.icomoon-hammer-nails:before {
+  content: "\e914";
+}
+.icomoon-lamellar:before {
+  content: "\e915";
+}
+.icomoon-locked-chest:before {
+  content: "\e916";
+}
+.icomoon-pill:before {
+  content: "\e917";
+}
+.icomoon-pointy-hat:before {
+  content: "\e918";
+}
+.icomoon-roast-chicken:before {
+  content: "\e919";
+}
+.icomoon-round-bottom-flask:before {
+  content: "\e91a";
+}
+.icomoon-shiny-apple:before {
+  content: "\e91b";
+}
+.icomoon-spade:before {
+  content: "\e91c";
+}
+.icomoon-spanner:before {
+  content: "\e91d";
+}
+.icomoon-sticking-plaster:before {
+  content: "\e91e";
+}
+.icomoon-stone-throne:before {
+  content: "\e91f";
+}
+.icomoon-stone-tower:before {
+  content: "\e920";
+}
+.icomoon-swap-bag:before {
+  content: "\e921";
+}
+.icomoon-sword-smithing:before {
+  content: "\e922";
+}
+.icomoon-trophy:before {
+  content: "\e923";
+}
+.icomoon-visored-helm:before {
+  content: "\e924";
+}
+.icomoon-chart:before {
+  content: "\e925";
+}
+.icomoon-fishing:before {
+  content: "\e926";
+}
+.icomoon-gamepad:before {
+  content: "\e927";
+}
+.icomoon-katana:before {
+  content: "\e928";
+}
+.icomoon-log:before {
+  content: "\e929";
+}
+.icomoon-ribbon-medal:before {
+  content: "\e92a";
+}
+.icomoon-crossbow:before {
+  content: "\e92b";
+}
+.icomoon-flame:before {
+  content: "\e92c";
+}
+

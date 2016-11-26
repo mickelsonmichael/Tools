@@ -1,0 +1,10 @@
+﻿@model List<Skills.SkillData>
+@foreach (Skills.SkillData skill in Model)
+{
+    <tr>
+        <td>@skill.name</td>
+        <td>@skill.level</td>
+        <td>@skill.experience</td>
+        <td>@skill.rank</td>
+    </tr>
+}

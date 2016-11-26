@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Runescape">
+  <DataContextMoniker Name="/RunescapeDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9101ba05-5fc1-4cf5-b1eb-9a441a0d6242" absoluteBounds="0.5, 1.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/RunescapeDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e17c236-5ee4-45fe-8eac-18d2b25ad368" absoluteBounds="0.51500000000000012, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="67179696-e6e7-49ea-80a0-956515adc79f" absoluteBounds="3.25, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/RunescapeDataContext/PlayerQuest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b16e02b0-303b-4314-b6aa-66a8ad3ac8bc" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="38867d69-2297-48a4-924f-48d3595f3ea1" absoluteBounds="3.25, 2.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/RunescapeDataContext/PlayerSkill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="37cf85cf-2063-4bef-b9f3-4f40e08d2757" absoluteBounds="3.2649999999999997, 3.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="153abec7-b817-4405-8704-00cf05ea87aa" absoluteBounds="5.875, 2.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/RunescapeDataContext/Skill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e974a2ea-267e-4520-9d6e-81bcadd2d2eb" absoluteBounds="5.89, 3.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="84d974dc-541b-4673-9fa8-33d4c78210da" absoluteBounds="5.875, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/RunescapeDataContext/Quest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81634c28-f711-402a-9fb1-97f722587395" absoluteBounds="5.89, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 1.1874995); (1.5 : 1.1874995); (1.5 : 1.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RunescapeDataContext/PlayerQuest/PlayerQuest_Player" />
+      <nodes>
+        <classShapeMoniker Id="67179696-e6e7-49ea-80a0-956515adc79f" />
+        <classShapeMoniker Id="9101ba05-5fc1-4cf5-b1eb-9a441a0d6242" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 1.28929768880208); (5.875 : 1.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RunescapeDataContext/PlayerQuest/PlayerQuest_Quest" />
+      <nodes>
+        <classShapeMoniker Id="67179696-e6e7-49ea-80a0-956515adc79f" />
+        <classShapeMoniker Id="84d974dc-541b-4673-9fa8-33d4c78210da" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.25 : 3.23159912109375); (2.5 : 3.23159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RunescapeDataContext/PlayerSkill/PlayerSkill_Player" />
+      <nodes>
+        <classShapeMoniker Id="38867d69-2297-48a4-924f-48d3595f3ea1" />
+        <classShapeMoniker Id="9101ba05-5fc1-4cf5-b1eb-9a441a0d6242" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 3.60659912109375); (5.875 : 3.60659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RunescapeDataContext/PlayerSkill/PlayerSkill_Skill" />
+      <nodes>
+        <classShapeMoniker Id="38867d69-2297-48a4-924f-48d3595f3ea1" />
+        <classShapeMoniker Id="153abec7-b817-4405-8704-00cf05ea87aa" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="90aef1cc-9cb5-4222-85e4-2b94b4007554" absoluteBounds="0.5, 4.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/RunescapeDataContext/Level" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2fc8ed00-45b2-4465-b547-52a95321cb4e" absoluteBounds="0.51500000000000012, 4.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

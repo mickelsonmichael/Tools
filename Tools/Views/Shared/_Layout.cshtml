@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/datatables.min.css")
+    @Styles.Render("~/Content/font-awesome.min.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("OS Guide", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index", "Runescape")"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>    
+                    <li><a href="@Url.Action("Index", "Skills")"><i class="glyphicon glyphicon-stats"></i> Skills</a></li>
+                    <li><a href="@Url.Action("Lookup", "Skills")"><i class="glyphicon glyphicon-search"></i> Lookup</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/datatables.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+@*<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Xbox <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Xbox 360", "Games360", "Xbox")</li>
+            <li>@Html.ActionLink("Xbox One", "Games", "Xbox")</li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Games</li>
+            <li>@Html.ActionLink("Halo: MCC", "Halo", "Xbox")</li>
+            <li>@Html.ActionLink("Dead Rising", "DeadRising", "Xbox")</li>
+        </ul>
+    </li>*@
+
+@*<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Runescape <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="@Url.Action("Index", "Runescape")"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
+            <li><a href="@Url.Action("ViewSkills", "Runescape")"><i class="glyphicon glyphicon-stats"></i> Skills</a></li>
+        </ul>
+    </li>*@

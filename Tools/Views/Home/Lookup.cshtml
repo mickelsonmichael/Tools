@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Lookup";
+}
+
+<h2>Lookup</h2>
+
+<div class="input-group">
+    <input id="input-player" type="text" class="form-control" placeholder="Search for...">
+    <span class="input-group-btn">
+        <a id="btn-search" class="btn btn-default" role="button">Lookup!</a>
+    </span>
+</div>
+
+<table id="skills">
+    <thead>
+        <tr>
+            <th>Skill</th>
+            <th>Level</th>
+            <th>Experience</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#btn-search").click(function () {
+                $("#skills tbody").load('@Url.Action("GetSkills", "Skill")' + '?username=' + $("#input-player").text()));
+            });
+        })
+    </script>
+}

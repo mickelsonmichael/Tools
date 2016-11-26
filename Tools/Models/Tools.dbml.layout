@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Tools">
+  <DataContextMoniker Name="/ToolsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1b956392-6de8-4c2a-b1b4-c350d2d69aeb" absoluteBounds="8.375, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ToolsDataContext/Level" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04133b61-542e-4583-922d-92903ec83725" absoluteBounds="8.39, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dbe63842-a889-4694-b8af-c66a9e4317ae" absoluteBounds="0.5, 0.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ToolsDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a28e8692-03b9-4840-8bd7-259cf95a34c7" absoluteBounds="0.51499999999999968, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bfcd4406-29d7-4dde-b382-c67a57d44674" absoluteBounds="3.125, 0.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ToolsDataContext/PlayerSkill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f6523b68-7c2c-43ea-9ef6-0726d3f9cf3e" absoluteBounds="3.1399999999999997, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="313f1905-0eba-4a45-a29c-4d96fa56b748" absoluteBounds="5.75, 0.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ToolsDataContext/Skill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0782192-e8c3-4195-a304-f8f4639bce7e" absoluteBounds="5.7650000000000006, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.41429768880208); (3.125 : 1.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ToolsDataContext/Player/Player_PlayerSkill" />
+      <nodes>
+        <classShapeMoniker Id="dbe63842-a889-4694-b8af-c66a9e4317ae" />
+        <classShapeMoniker Id="bfcd4406-29d7-4dde-b382-c67a57d44674" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 1.60659912109375); (5.75 : 1.60659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ToolsDataContext/PlayerSkill/PlayerSkill_Skill" />
+      <nodes>
+        <classShapeMoniker Id="bfcd4406-29d7-4dde-b382-c67a57d44674" />
+        <classShapeMoniker Id="313f1905-0eba-4a45-a29c-4d96fa56b748" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 1.05329956054688); (5.125 : 1.05329956054688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ToolsDataContext/Skill/Skill_PlayerSkill" />
+      <nodes>
+        <classShapeMoniker Id="313f1905-0eba-4a45-a29c-4d96fa56b748" />
+        <classShapeMoniker Id="bfcd4406-29d7-4dde-b382-c67a57d44674" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e35d2a79-6039-4874-9a14-9593ea289839" absoluteBounds="5.75, 3, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ToolsDataContext/Quest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90b22b89-4a12-4078-99f1-2263fe318e5d" absoluteBounds="5.765, 3.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b7dfb5b7-4909-4f17-ac24-fbe30e3c46b0" absoluteBounds="3.125, 3, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ToolsDataContext/PlayerQuest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2d9140e-fa72-4c73-8638-135d49b7cdb4" absoluteBounds="3.14, 3.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 2.20359537760417); (1.5 : 3.78929768880208); (3.125 : 3.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ToolsDataContext/Player/Player_PlayerQuest" />
+      <nodes>
+        <classShapeMoniker Id="dbe63842-a889-4694-b8af-c66a9e4317ae" />
+        <classShapeMoniker Id="b7dfb5b7-4909-4f17-ac24-fbe30e3c46b0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 3.78929768880208); (5.125 : 3.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ToolsDataContext/Quest/Quest_PlayerQuest" />
+      <nodes>
+        <classShapeMoniker Id="e35d2a79-6039-4874-9a14-9593ea289839" />
+        <classShapeMoniker Id="b7dfb5b7-4909-4f17-ac24-fbe30e3c46b0" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

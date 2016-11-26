@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "RuneScape";
+}
+
+<h2>RuneScape</h2>
+
+<div class="row" id="info">
+    <table class="table table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Level</th>
+                <th>Experience</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+<p id="out"></p>
+
+
+@section scripts{
+    <script src="~/tools/Scripts/jquery.ajax-cross-origin.min.js"></script>
+    <script>
+        var url = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=doctorrenson",
+            order = [
+                "Overall", "Attack", "Defense", "Strength", "hitpoints", "Ranged", "Prayer", "Magic", "Cooking", "Woodcutting", "Fletching", "Fishing", "Firemaking", "Crafting", "Smithing", "Mining",
+                "Herblore", "Agility", "Thieving", "Slayer", "Farming", "Runecraft", "Hunter", "Construction", "Bounty Hunter - Rogue", "Bounty Hunter - Hunter", "Last Man Standing"
+            ],
+            xp = [
+                0,83,174,276,388,512,650,801,969,1154,1358,1584,1833,2107,2411,2746,3115,3523,3973,4470,5018,5624,6291,7028,7842,8740,9730,10824,12031,13363,14833,16456,18247,20224,22406,24815,
+                27473,30408,33648,37224,41171,45529,50339,55649,61512,67983,75127,83014,91721,101333,111945,123660,136594,150872,166636,184040,203254,224466,247886,273742,302288,333804,368599,
+                407015, 449428, 496254, 547953, 605032, 668051, 737627, 814445, 899257, 992895, 1096278, 1210421, 1336443, 1475581, 1629200, 1798808, 1986068, 2192818, 2421087, 2673114, 2951373,
+                3258594,3597792, 3972294,4385776,4842295,5346332,5902831,6517253,7195629,7944614,8771558,9684577
+            ];
+        $(function () {
+            $.ajax({
+                crossOrigin: true,
+                url: url,
+                success: function (data) {
+                    var array = data.split('\n');
+
+                    $(".out").text(data);
+                    for (var i = 1; i<array.length-4; i++) {
+                        var skill = array[i].split(','),
+                            level = -1;
+
+                        for (var j = 0; j < xp.length; j++) {
+                            if (xp[j] > parseInt(skill[2])) {
+                                level = j;
+                                break;
+                            }
+                                
+                        }
+
+                        var progress = Math.floor((parseInt(skill[2]) - xp[level - 1])
+                            / (xp[level] - xp[level - 1]) * 100);
+
+                        $(".table tbody").append($('<tr>')
+                            .append($('<td>').text(order[i]))
+                            .append($('<td>').text(skill[1]))
+                            .append($("<td>")
+                                .html($('<div>').addClass('progress')
+                                    .html($('<div>').addClass('progress-bar')
+                                    .attr('role', 'progressbar')
+                                    .attr('aria-valuenow', progress)
+                                    .attr('aria-valuemin','0')
+                                    .attr('aria-valuemax', '100')
+                                    .css('width', progress + '%')
+                                    .text(progress + '%')))));
+                    }
+                }
+            })
+        });
+        
+    </script>
+    }

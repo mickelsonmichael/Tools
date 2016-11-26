@@ -1,0 +1,146 @@
+﻿@model Tools.Models.Helpers.Runescape.UserData
+@{
+    ViewBag.Title = "Runescape - Dashboard";
+    string url = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=rens0n";
+    int total = 0;
+    string qpStatus = "danger";
+}
+
+<h2>RENS0N - Dashboard</h2>
+
+<div class="row">
+    
+
+    <div class="col-sm-6">
+        <table id="quests" class="table table-responsive table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Status</th>
+                    <th>Members</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Tools.Models.Helpers.Runescape.QuestData questData in Model.quests)
+                {
+                    string status = "danger";
+
+                    if (questData.status)
+                    {
+                        status = "success";
+                        total += questData.quest.Reward;
+                    }
+                    <tr class="@status">
+                        <td><a href="@questData.quest.url" target="_blank">@questData.quest.Name <i class="fa fa-external-link"></i></a></td>
+                        <td class="text-center">
+                            <input type="hidden" value="@questData.status" />
+                            <input class="questChk" type="checkbox" value="@questData.quest.Reward" checked="@questData.status" id="id-@questData.quest.QuestID" onclick="ToggleQuest(this)" />
+                            <label for="id-@questData.quest.QuestID"></label>
+                        </td>
+                        @if (questData.quest.IsMembers)
+                        {
+                            <td class="text-center">Yes</td>
+                        }
+                        else
+                        {
+                            <td class="text-center">No</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Quest Points</th>
+                    <th id="total" style="text-align: center;">@total</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="col-sm-6">
+        <table id="skills" class="table table-responsive table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>Level</th>
+                    <th>Req.</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Tools.Models.Helpers.Runescape.SkillData skill in Model.skills)
+                {
+                    string status = "danger";
+                    if (skill.lvl >= skill.req)
+                    {
+                        status = "success";
+                    }
+                    <tr class="@status">
+                        <td>@skill.name</td>
+                        <td style="text-align:center;">@skill.lvl</td>
+                        <td style="text-align:center;">@skill.req</td>
+                    </tr>
+                }
+                
+            </tbody>
+            <tfoot>
+                @if (total >= 175)
+                {
+                    qpStatus = "success";
+                }
+                <tr class="@qpStatus">
+                    <td>Quest Points</td>
+                    <td id="qpReq" style="text-align:center;">@total</td>
+                    <td style="text-align:center;">175</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/tools/Scripts/jquery.ajax-cross-origin.min.js"></script>
+    <script>
+        $(function () {
+            var order = [
+                "Overall", "Attack", "Defense", "Strength", "Hitpoints", "Ranged", "Prayer", "Magic", "Cooking", "Woodcutting", "Fletching", "Fishing", "Firemaking", "Crafting", "Smithing", "Mining",
+                "Herblore", "Agility", "Thieving", "Slayer", "Farming", "Runecraft", "Hunter", "Construction", "Bounty Hunter - Rogue", "Bounty Hunter - Hunter", "Last Man Standing"];
+
+            $("#skills").DataTable({
+                "search": false,
+                "paging": false,
+                "bFilter": false,
+                "info": false
+            });
+
+            $("#quests").DataTable({
+                "search": false,
+                "paging": false,
+                "bFilter": false,
+                "info": false
+            });
+
+            $("input[type='checkbox']").change(function () {
+                $(this).parent().toggleClass("success").toggleClass("danger");
+                var total = parseInt($("#total").text());
+                if ($(this).prop("checked"))
+                    total += parseInt($(this).val());
+                else
+                    total -= parseInt($(this).val());
+                $("#total").text(total);
+                $("#qpReq").text(total);
+            })
+        })
+
+        function ToggleQuest(checkboxInput) {
+            $.ajax({
+                type: 'POST',
+                url: 'Runescape/UpdateQuest',
+                data: { newValue: checkboxInput.checked, questid: checkboxInput.getAttribute("id").split('-')[1] },
+                success: function(message) {
+                    //console.log(message);
+                },
+                dataType: 'json'
+            });
+        }
+    </script>
+}

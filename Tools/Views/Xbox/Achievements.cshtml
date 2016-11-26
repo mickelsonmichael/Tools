@@ -1,0 +1,112 @@
+﻿@model string
+@{
+    ViewBag.Title = "Xbox One Achievements";
+}
+
+<h2>Xbox One Achievements</h2>
+
+<div id="error" class="alert alert-danger" style="display: none;"></div>
+<div id="success" class="alert alert-success" style="display: none;">
+    <strong>Success!</strong> Data has been sucessfully obtained!
+</div>
+<div id="loading" class="alert alert-info">
+    <strong><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading!</strong> Getting data from XboxApi.com, please wait.
+</div>
+<div id="congrats" class="alert alert-success" style="display: none;">
+    <strong>Congratulations!</strong> You have all the achievements for this title!</p>
+</div>
+
+<hr />
+
+<div class="row">
+    
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#locked"><i class="fa fa-lock"></i> Locked</a></li>
+    <li><a data-toggle="tab" href="#unlocked"><i class="fa fa-unlock-alt"></i> Unlocked</a></li>
+</ul>
+<br />
+<div class="tab-content">
+    <div id="locked" class="tab-pane fade in active">
+        <table id="achs" class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>G</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="unlocked" class="tab-pane fade">
+        <table id="uachs" class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>G</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        var xuid = "2661278886955474",
+            data = new XMLHttpRequest();
+
+        data.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                // Error
+                if (this.status != 200) {
+                    $("#error").append($("<strong>").text(this.status))
+                        .append(" " + this.statusText)
+                        .show();
+                }
+
+                else {
+                    $("#loading").remove();
+                    var count = 0;
+
+                    $.each($.parseJSON(this.response), function (key, achievement) {
+                        
+                            count++;
+                            var row = $("<tr>"),
+                                //media = achievement.mediaAssets[0],
+                                rewards = achievement.rewards[0],
+                                //image = $("<td>").append($("<img>").css("max-height", "100px").attr("src", media.url)),
+                                name = $("<td>").text(achievement.name),
+                                desc = $("<td>").text(achievement.description),
+                                gamerscore = $("<td>").text(rewards.value);
+
+                            row.append(name).append(desc).append(gamerscore);
+                            if (achievement.progressState != "Achieved") {
+                                $("#achs").append(row);
+                            }
+                            else {
+                                $("#uachs").append(row);
+                            }
+                    })
+
+                    if (count < 1) {
+                        $("#congrats").show();
+                    }
+                    else {
+                        $("#achs").DataTable();
+                        $("#uachs").DataTable();
+                        $("#success").show().fadeOut(1000);
+                    }
+
+                }
+            }
+        }
+        data.open("GET", "https://xboxapi.com/v2/2661278886955474/achievements/" + @Model, true);
+        data.setRequestHeader("X-Auth", "5f57c3880bd24efcaac2e5c0ec667fbe81de8b3b");
+        data.setRequestHeader("Content-Type", "application/json");
+        data.send();
+    </script>
+}

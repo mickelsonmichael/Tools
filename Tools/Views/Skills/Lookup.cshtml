@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Lookup";
+}
+
+<h2>Lookup</h2>
+
+<div class="input-group input-group-lg">
+    <input id="PlayerName" type="text" class="form-control" placeholder="Search for...">
+    <span class="input-group-btn">
+        <a id="btn-search" class="btn btn-default" role="button"><span class="glyphicon glyphicon-search"></span> Lookup</a>
+    </span>
+</div>
+
+
+<br />
+<div id="error" class="alert alert-danger" style="display: none;">
+    <strong><span class="glyphicon glyphicon-warning-sign"></span> Error!</strong>
+    There was an error looking up the user! Either the user does not exist or the name entered was too long (12 char limit).
+</div>
+<div id="loading" class="alert alert-info" style="display: none;">
+    <strong><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading!</strong>
+    Getting data from Runescape.com, please wait...
+</div>
+
+<table id="skills" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Skill</th>
+            <th>Level</th>
+            <th>Experience</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            var table = $("#skills").DataTable({
+                "search": false,
+                "paging": false,
+                "bFilter": false,
+                "info": false
+            });
+
+            $("#btn-search").click(function () {
+                $("#loading").show();
+                $("#error").hide();
+                table.destroy();
+                $("#skills tbody").empty();
+                $("#skills tbody").load('@Url.Action("GetSkills")' + '?username=' + $("#PlayerName").val(), function (response, status) {
+                    $("#loading").hide();
+                    
+                    if (status == "error") {
+                        $("#skills tbody").empty();
+                        $("#error").show();
+                        table = $("#skills").DataTable({
+                            "search": false,
+                            "paging": false,
+                            "bFilter": false,
+                            "info": false
+                        });
+                    }
+                    else {
+                        table = $("#skills").DataTable({
+                            "search": false,
+                            "paging": false,
+                            "bFilter": false,
+                            "info": false
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+}
