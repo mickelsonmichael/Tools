@@ -21,6 +21,7 @@ namespace Tools.Models
             }
         }
 
+
         public bool GetQuests(string username)
         {
 
